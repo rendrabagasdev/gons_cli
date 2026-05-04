@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"gons-cli/commands"
+	"gons_cli/commands"
 	"github.com/spf13/cobra"
 )
 

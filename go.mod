@@ -1,4 +1,4 @@
-module gons-cli
+module gons_cli
 
 go 1.26.2
 
