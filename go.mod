@@ -1,4 +1,4 @@
-module gons_cli
+module github.com/rendrabagasdev/gons_cli
 
 go 1.26.2
 
