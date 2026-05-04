@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"gons_cli/commands"
+	"github.com/rendrabagasdev/gons_cli/commands"
 	"github.com/spf13/cobra"
 )
 
