@@ -14,6 +14,7 @@ var rootCmd = &cobra.Command{
 }
 
 func init() {
+	rootCmd.AddCommand(commands.NewProjectCmd)
 	rootCmd.AddCommand(commands.MakeModelCmd)
 	rootCmd.AddCommand(commands.MakeControllerCmd)
 	rootCmd.AddCommand(commands.MakeRequestCmd)
