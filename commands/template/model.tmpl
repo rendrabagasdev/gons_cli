@@ -1,0 +1,9 @@
+package models
+
+type {{.Name}} struct {
+	Id int ` + "`" + `gorm:"primaryKey"` + "`" + `
+}
+
+func init() {
+	RegisterModel(&{{.Name}}{})
+}

@@ -1,0 +1,39 @@
+package services
+
+import (
+	"gons/app/models"
+	"log/slog"
+
+	"github.com/golobby/container/v3"
+	"gorm.io/gorm"
+)
+
+type {{.Name}} struct {
+	DB *gorm.DB `container:"type"`
+}
+
+/*
+Constructor {{.Name}}
+@return *{{.Name}}
+*/
+func New{{.Name}}() *{{.Name}} {
+	scv := &{{.Name}}{}
+	if err := container.Fill(scv); err != nil {
+		slog.Error("Gons: UserService injection error", "error", err)
+	}
+	return scv
+}
+
+// auto registrasi ke service registry
+func init() {
+	RegisterService(func() error {
+		return container.Singleton(func() *{{.Name}} {
+			return New{{.Name}}()
+		})
+	})
+}
+
+
+func (service *{{.Name}}) GetAll() error {
+	return nil
+}
