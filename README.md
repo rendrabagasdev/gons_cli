@@ -10,7 +10,7 @@ A command-line tool for scaffolding [Gons](https://github.com/rendrabagasdev/gon
 ## Installation
 
 ```bash
-go get github.com/rendrabagasdev/gons_cli@latest
+go install github.com/rendrabagasdev/gons_cli@latest
 ```
 
 Or build from source:
