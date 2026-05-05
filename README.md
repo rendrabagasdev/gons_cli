@@ -139,4 +139,6 @@ gons make:middleware auth
 
 ## License
 
-MIT
+Redistributable licenses place minimal restrictions on how software can be used, modified, and redistributed.
+
+MIT [LICENSE](LICENSE)

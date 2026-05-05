@@ -8,9 +8,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var version = "v1.0.0"
+
 var rootCmd = &cobra.Command{
-	Use:   "gons",
-	Short: "Gons CLI Framework",
+	Use:     "gons",
+	Short:   "Gons CLI Framework",
+	Version: version,
 }
 
 func init() {
