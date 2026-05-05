@@ -10,14 +10,14 @@ A command-line tool for scaffolding [Gons](https://github.com/rendrabagasdev/gon
 ## Installation
 
 ```bash
-go install github.com/rendrabagasdev/gons_cli@latest
+go get github.com/rendrabagasdev/gons@latest
 ```
 
 Or build from source:
 
 ```bash
-git clone https://github.com/rendrabagasdev/gons_cli.git
-cd gons_cli
+git clone https://github.com/rendrabagasdev/gons.git
+cd gons
 go build -o gons .
 ```
 
