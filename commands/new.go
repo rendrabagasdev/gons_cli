@@ -11,9 +11,9 @@ import (
 )
 
 const (
-	HTMLStarterRepo    = "https://github.com/your-username/gons-html-starter.git"
-	InertiaStarterRepo = "https://github.com/your-username/gons-inertia-starter.git"
-	APIStarterRepo     = "https://github.com/your-username/gons-api-starter.git"
+	HTMLStarterRepo    = "https://github.com/rendrabagasdev/gons-html-starter.git"
+	InertiaStarterRepo = "https://github.com/rendrabagasdev/gons-inertia-starter.git"
+	APIStarterRepo     = "https://github.com/rendrabagasdev/gons-api-starter.git"
 )
 
 var NewProjectCmd = &cobra.Command{
