@@ -6,28 +6,60 @@ import (
 	"os/exec"
 	"path/filepath"
 
+	"github.com/AlecAivazis/survey/v2"
 	"github.com/spf13/cobra"
 )
 
+const (
+	HTMLStarterRepo    = "https://github.com/your-username/gons-html-starter.git"
+	InertiaStarterRepo = "https://github.com/your-username/gons-inertia-starter.git"
+	APIStarterRepo     = "https://github.com/your-username/gons-api-starter.git"
+)
+
 var NewProjectCmd = &cobra.Command{
-	Use:   "new [name]",
+	Use:   "new [project-name]",
 	Short: "Create a new Gons project",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		name := args[0]
-		createNewProject(name)
+		projectName := args[0]
+
+		var selectedStack string
+		prompt := &survey.Select{
+			Message: "Choose the frontend/templating stack for your project:",
+			Options: []string{
+				"Pure HTML (Go Templates + Alpine.js + Tailwind)",
+				"Inertia.js + React",
+				"Pure API (No Frontend)",
+			},
+		}
+
+		err := survey.AskOne(prompt, &selectedStack)
+		if err != nil {
+			fmt.Printf("Error selecting stack: %v\n", err)
+			return
+		}
+
+		var repoURL string
+		switch selectedStack {
+		case "Pure HTML (Go Templates + Alpine.js + Tailwind)":
+			repoURL = HTMLStarterRepo
+		case "Inertia.js + React":
+			repoURL = InertiaStarterRepo
+		case "Pure API (No Frontend)":
+			repoURL = APIStarterRepo
+		}
+
+		cloneRepository(repoURL, projectName)
 	},
 }
 
-func createNewProject(name string) {
-	repoURL := "https://github.com/rendrabagasdev/gons_framework"
+func cloneRepository(repoURL string, projectName string) {
+	fmt.Printf("Creating new project: %s...\n", projectName)
 
-	fmt.Printf("Creating new project: %s...\n", name)
-
-	// 1. Clone the repository
-	cloneCmd := exec.Command("git", "clone", repoURL, name)
-	cloneCmd.Stdout = os.Stdout
-	cloneCmd.Stderr = os.Stderr
+	// Clone the repository
+	cloneCmd := exec.Command("git", "clone", repoURL, projectName)
+	cloneCmd.Stdout = nil
+	cloneCmd.Stderr = nil
 
 	err := cloneCmd.Run()
 	if err != nil {
@@ -35,15 +67,15 @@ func createNewProject(name string) {
 		return
 	}
 
-	// 2. Remove .git directory
-	gitDir := filepath.Join(name, ".git")
+	// Remove .git directory
+	gitDir := filepath.Join(projectName, ".git")
 	err = os.RemoveAll(gitDir)
 	if err != nil {
 		fmt.Printf("Warning: Could not remove .git directory: %v\n", err)
 	}
 
-	fmt.Printf("\nProject %s created successfully!\n", name)
+	fmt.Printf("\nProject %s created successfully!\n", projectName)
 	fmt.Printf("To get started:\n")
-	fmt.Printf("  cd %s\n", name)
+	fmt.Printf("  cd %s\n", projectName)
 	fmt.Printf("  go mod tidy\n")
 }
